@@ -1,0 +1,78 @@
+.neonText {
+	color: #fff;
+	font-size: 48px;
+	text-shadow:
+		0 0 21px #fff,
+}
+
+.mainInput {
+	background: transparent;
+	color: white;
+	font-size: 26px;
+	font-weight: 600;
+	border: 0.2rem solid #fff;
+	border-radius: 5px;
+	padding: 0.4em;
+	box-shadow: 0 0 .2rem #fff,
+		0 0 .2rem #fff,
+		0 0 2rem #bc13fe,
+		0 0 0.8rem #bc13fe,
+		inset 0 0 1.3rem #bc13fe;
+}
+
+.mainInput:focus {
+	outline: none;
+}
+
+.mainInput option {
+	color: #212529;
+	font-size: 15px;
+}
+
+.submitButton {
+	height: 4rem;
+	background: transparent;
+	color: white;
+	font-size: 26px;
+	font-weight: 600;
+	border: 0.2rem solid #fff;
+	border-radius: 5px;
+	padding: 0.4em;
+	box-shadow: 0 0 .2rem #fff,
+		0 0 .2rem #fff,
+		0 0 0.2rem #bc13fe,
+		inset 0 0 0.4rem #bc13fe;
+}
+
+.submitButton:hover {
+	box-shadow: 0 0 .2rem #fff,
+		0 0 .2rem #fff,
+		0 0 2rem #bc13fe,
+		0 0 0.8rem #bc13fe,
+		inset 0 0 1.3rem #bc13fe;
+}
+
+.yt-link {
+	color: red;
+	text-decoration: none;
+}
+
+.yt-link:hover {
+	color: #bc13fe;
+}
+
+.output-button {
+	background: transparent;
+	border: solid white;
+	border-radius: 5px;
+	padding: 2rem;
+	width: 100%;
+	color: white;
+}
+
+.upload-btn {
+	border: none;
+	background: transparent;
+	font-size: small;
+	color: blue;
+}

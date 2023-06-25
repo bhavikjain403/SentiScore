@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Youtube Analysis</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <!-- <form
+        style="margin-top: 5rem;"
+        method="POST"
+        action="{{ url_for('youtube') }}"
+        enctype="multipart/form-data"
+    >
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 offset-lg-3 col-lg-6">
+                <input type="text" class="w-100 mainInput" name="videoid" placeholder="Enter Video ID" onclick="hideSentiment()">
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="offset-2 col-8 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
+                <input type="submit" value="Submit" class="w-100 submitButton">
+            </div>
+        </div>
+    </form>
+    {% if result %}
+        <div class="row mt-5" id="sentiment_box">
+            <div class="offset-4 col-4 text-white">{{ result }}</div>
+        </div>
+    {% endif %}
+    <div class="row mt-5">
+        <div class="col-auto"><a href="/" class="yt-link">Analyze Text &rarr;</a></div>
+    </div> -->
+    <div class="row mb-5">
+        <div class="col-12 col-lg-6">
+            <div class="card h-100" style="border-radius: 10px; box-shadow: 0.5px 0.5px 5px yellow; border: none;">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('youtube') }}" enctype="multipart/form-data">
+                        <div class="form-group mt-4">
+                            <label for="videoid">Enter Video Url</label>
+                            <textarea class="form-control mt-2" name="videoid" rows="1"></textarea>
+                        </div>
+                        <input type="submit" value="Submit" class="w-100 btn btn-warning mt-4" id="btnflip1">
+                    </form>
+                    <div class="row mt-5">
+                        <div class="col-auto"><a href="/" class="yt-link">Analyze Text &rarr;</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card h-100" style="border-radius: 10px; box-shadow: 0.5px 0.5px 5px yellow; border: none;">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename = 'images/scale.png') }}" class="w-100" alt="scale">
+                    <hr class="w-100">
+                    {% if result %}
+                    {{ result }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

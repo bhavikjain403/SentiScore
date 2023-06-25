@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12 col-lg-6">
+            <div class="card h-100" style="border-radius: 10px; box-shadow: 0.5px 0.5px 5px yellow; border: none;">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('home') }}" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select class="form-control mt-2" name="language">
+                                <option value="english">English</option>
+                                <option value="hindi">Hindi</option>
+                                <option value="hinglish">Hinglish</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="domain">Domain</label>
+                            <select class="form-control mt-2" name="domain"">
+                                <option value="movie">Movie</option>
+                                <option value="food">Food</option>
+                                <option value="book">Book</option>
+                                <option value="general">General comment</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="inputtext">Enter Text</label>
+                            <textarea class="form-control mt-2" name="inputtext" value="" rows="3"></textarea>
+                        </div>
+                        <hr>
+                        <div class="form-group mt-4">
+                            <label for="inputfile">Or upload a file</label>
+                            <input type="file" class="form-control mt-2" name="inputfile" value="">
+                        </div>
+                        <input type="submit" value="Submit" class="w-100 btn btn-warning mt-4" id="btnflip1">
+                    </form>
+                    <div class="row mt-5">
+                        <div class="col-auto"><a href="/youtube" class="yt-link">Analyze YouTube video comments
+                                &rarr;</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card h-100" style="border-radius: 10px; box-shadow: 0.5px 0.5px 5px yellow; border: none;">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename = 'images/scale.png') }}" class="w-100" alt="scale">
+                    <hr class="w-100">
+                    {% if result %}
+                        <table class="table table-striped table-hover mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Text</th>
+                                    <th scope="col">Sentiment</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in result %}
+                                <tr>
+                                    <td>{{ i.text }}</td>
+                                    <td>{{ i.sentiment }}</td>
+                                    <td>{{ i.score }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    {% if piedata %}
+                    <div style="border: 1px solid black;">
+                        <div id = "3dchart" class="w-100"></div>
+                    </div>
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+
+                        google.charts.load('current', { 'packages': ['corechart'] })
+
+                        google.charts.setOnLoadCallback(drawCharts)
+
+                        function drawCharts() {
+                            var data = new google.visualization.DataTable()
+                            var piedata = {{ piedata }}
+                            data.addColumn('string', 'Sentiment')
+                            data.addColumn('number', 'Count');
+                            data.addRow(["Positive Text", piedata[0]]);
+                            data.addRow(["Negative Text", piedata[1]]);
+                            data.addRow(["Neutral Text", piedata[2]]);
+
+                            var options_2 = {
+                                'chartArea.width':'100%',
+                                'is3D': true,
+                                colors: ['#00FF00', '#FF0000', '#FFFF00'],
+                                pieSliceTextStyle: {
+                                    color: 'black'
+                                }
+                            }
+                            var _3dchart = new google.visualization.PieChart(document.getElementById('3dchart'));
+                            _3dchart.draw(data, options_2);
+                        }
+                    </script>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
